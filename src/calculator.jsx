@@ -27,8 +27,10 @@ class Calculator extends Component {
         this.setState({
           value: value.substr(0, value.length - 1) + e.target.value,
         });
-      } else this.status = true;
-      this.setState({ value: value + e.target.value, equal: false });
+      } else {
+        this.status = true;
+        this.setState({ value: value + e.target.value, equal: false });
+      }
     }
   };
 
