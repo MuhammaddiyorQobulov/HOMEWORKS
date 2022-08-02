@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import "./calculator.scss";
 class Calculator extends Component {
-  numbers = ["7", "8", "9", "4", "5", "6", "1", "2", "3", ".", 0, "%"];
+  numbers = ["7", "8", "9", "4", "5", "6", "1", "2", "3", ".", "0", "%"];
   operators = ["+", "-", "*", "/"];
   status = false;
   state = {
