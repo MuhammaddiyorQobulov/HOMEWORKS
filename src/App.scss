@@ -1,0 +1,26 @@
+.App-container {
+  user-select: none;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+  .value {
+    background-color: white;
+    border-radius: 3px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    h1 {
+      font-size: 36px;
+    }
+  }
+
+  .counter {
+    display: flex;
+    gap: 10px;
+  }
+}
