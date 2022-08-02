@@ -32,35 +32,6 @@ class Calculator extends Component {
     }
   };
 
-  // handleClick = (e) => {
-  //   let { value, equal } = this.state;
-  //   console.log("status1 = ", this.status);
-  //   console.log("state1 = ", this.state);
-  //   if (this.operators.includes(e.target.value)) {
-  //     if (this.status) {
-  //       this.setState({
-  //         value: value.substr(0, value.length - 1) + e.target.value,
-  //       });
-  //       return;
-  //     }
-
-  //     this.status = true;
-  //     this.setState({ value: value + e.target.value, equal: false });
-  //     return;
-  //   }
-
-  //   if (equal === true) {
-  //     value = "";
-  //     this.setState({ value: e.target.value, equal: false });
-  //     return;
-  //   }
-
-  //   this.status = false;
-  //   this.setState({ value: value + e.target.value });
-  //   console.log("status2 = ", this.status);
-  //   console.log("state2 = ", this.state);
-  // };
-
   render() {
     const { value } = this.state;
     return (
