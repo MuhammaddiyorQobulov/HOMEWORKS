@@ -1,18 +1,18 @@
 import React from "react";
 
 const User = ({ users, media }) => {
-  return users.map((user, idx) => (
-    <div className="user" key={user.name}>
-      <img src={user.img} alt="" />
+  return users.map(({ img, email, name, icon }, idx) => (
+    <div className="user" key={name}>
+      <img src={img} alt="" />
       {media ? (
         <div>
-          <nav>{user.name}</nav>
-          <p>{user.email}</p>
+          <nav>{name}</nav>
+          <p>{email}</p>
         </div>
       ) : (
         ""
       )}
-      {media ? user.icon : ""}
+      {media ? icon : ""}
     </div>
   ));
 };

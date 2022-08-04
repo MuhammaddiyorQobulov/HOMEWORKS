@@ -7,11 +7,10 @@ const Menus = ({ menus, onSelect, media }) => {
       {menus.map((menu, idx) => (
         <Menu
           idx={idx}
-          key={idx}
+          key={menu.title}
           menu={menu}
           media={media}
           onSelect={onSelect}
-          status={menu.status}
         />
       ))}
     </div>

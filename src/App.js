@@ -41,7 +41,6 @@ class App extends Component {
     ],
     menuTitle: "Dashboard",
     media: true,
-    logoName: "MingCute",
   };
 
   onMedia = () => {
@@ -59,18 +58,12 @@ class App extends Component {
   };
 
   render() {
-    const { menus, users, menuTitle, logoName, media } = this.state;
-    const { onMedia, onSelect, onActive } = this;
+    const { menus, users, menuTitle, media } = this.state;
+    const { onMedia, onSelect } = this;
     return (
       <div className="app">
         <div className="dashboard">
-          <Logo
-            logo={logo}
-            search={search}
-            logoName={logoName}
-            className="d-none"
-            media={media}
-          />
+          <Logo logo={logo} search={search} className="d-none" media={media} />
           <Menus menus={menus} media={media} onSelect={onSelect} />
           <User users={users} media={media} />
         </div>

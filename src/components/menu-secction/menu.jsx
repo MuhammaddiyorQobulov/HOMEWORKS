@@ -1,6 +1,7 @@
 import React from "react";
 
-const Menu = ({ menu, onSelect, media, idx, status }) => {
+const Menu = ({ menu, onSelect, media, idx }) => {
+  const { title, icon, status } = menu;
   return (
     <div
       className="menu"
@@ -9,21 +10,15 @@ const Menu = ({ menu, onSelect, media, idx, status }) => {
           ? {
               background: "dodgerblue",
               color: "white",
-              path: {
-                fill: "black",
-              },
-              path: {
-                fill: "red",
-              },
             }
           : {}
       }
       onClick={() => {
-        onSelect(menu.title, idx);
+        onSelect(title, idx);
       }}
     >
-      <nav>{menu.icon}</nav>
-      {media ? <span>{menu.title}</span> : ""}
+      <nav>{icon}</nav>
+      {media ? <span>{title}</span> : ""}
     </div>
   );
 };
