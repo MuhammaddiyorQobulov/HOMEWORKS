@@ -1,0 +1,50 @@
+.app {
+  display: flex;
+  border: 0.1px solid #9ec0c2;
+  border-collapse: collapse;
+  width: 100vh;
+  height: 720px;
+  margin: 80px;
+
+  .dashboard {
+    height: 100%;
+    border: 0.1px solid #9ec0c2;
+    padding: 16px;
+    background: linear-gradient(to bottom, #fff 90%, #f6f7f9 10%);
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      height: 50px;
+      padding-left: 8px;
+    }
+    .search {
+      display: flex;
+      background-color: #f2f4f6;
+      height: 40px;
+      border-radius: 8px;
+      padding: 10px 0 10px 14px;
+      gap: 10px;
+      margin-top: 15px;
+      button {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border: none;
+        background-color: transparent;
+        svg {
+          width: 16px;
+          height: 16px;
+          fill: red;
+        }
+      }
+
+      input {
+        border: none;
+        outline: none;
+        background-color: transparent;
+        width: 80%;
+      }
+    }
+  }
+}

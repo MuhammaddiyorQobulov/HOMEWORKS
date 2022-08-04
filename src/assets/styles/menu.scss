@@ -1,0 +1,15 @@
+.menu {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  height: 40px;
+  margin-top: 8px;
+  border-radius: 8px;
+  padding: 10px 0 10px 10px;
+  color: #526581;
+  cursor: pointer;
+  span {
+    font-weight: 600;
+    font-size: 17px;
+  }
+}

@@ -1,0 +1,15 @@
+.content-section {
+  width: 100%;
+  border: 0.1px solid #9ec0c2;
+  padding: 0px 20px;
+  height: 80px;
+  & div {
+    display: flex;
+    height: 80px;
+    align-items: center;
+    gap: 30px;
+    i {
+      font-size: 20px;
+    }
+  }
+}
