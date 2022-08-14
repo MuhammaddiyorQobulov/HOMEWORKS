@@ -27,12 +27,12 @@ class Slider extends Component {
     return (
       <div className="container">
         <div
+          className="slider"
           onClick={handleClick}
           style={{
             "--dot1": `${dot1}%`,
             "--dot2": `${dot2}%`,
           }}
-          className="slider"
         >
           <span className="dot1">
             <nav className="dot1-value">{ceil(dot2, 1)}%</nav>
