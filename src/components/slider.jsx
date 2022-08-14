@@ -25,7 +25,7 @@ class Slider extends Component {
     const { dot1, dot2 } = this.state;
 
     return (
-      <>
+      <div className="container">
         <div
           onClick={handleClick}
           style={{
@@ -50,7 +50,7 @@ class Slider extends Component {
         >
           Distance
         </button>
-      </>
+      </div>
     );
   }
 }
