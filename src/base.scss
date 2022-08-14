@@ -1,0 +1,13 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  user-select: none;
+}
+
+:root {
+  --color: blue;
+  --slider-width: 30%;
+  --max-width: 1800px;
+  --parcent: 33%;
+}

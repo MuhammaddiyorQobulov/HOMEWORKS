@@ -1,0 +1,52 @@
+.slider {
+  position: relative;
+  width: var(--max-width);
+  height: 5px;
+  background-color: red;
+  background-color: rgb(236, 236, 236);
+  border-radius: 10px;
+  cursor: pointer;
+  &::after {
+    transition: 0.3s ease-in-out;
+    position: absolute;
+    content: "";
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    border: 2px solid dodgerblue;
+    background-color: white;
+    top: -90%;
+    left: var(--slider-width);
+    margin-left: -0.4%;
+  }
+  &-box {
+    width: var(--slider-width);
+    height: 100%;
+    content: "";
+    background-color: dodgerblue;
+    border-radius: 10px;
+    transition: 0.3s ease-in-out;
+
+    .dots {
+      position: absolute;
+      width: var(--max-width);
+      height: 100%;
+      display: flex;
+      justify-content: space-between;
+      nav {
+        position: relative;
+        width: 10px;
+        height: 10px;
+        border-radius: 50%;
+        border: 2px solid dodgerblue;
+        background-color: white;
+        top: -60%;
+        font-family: sans-serif;
+        font-weight: 700;
+        p {
+          margin: 10px -5px;
+        }
+      }
+    }
+  }
+}

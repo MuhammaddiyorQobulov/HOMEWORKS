@@ -1,0 +1,26 @@
+.horizontal-parcent {
+  border: 1px solid red;
+  width: 50%;
+  height: 50px;
+  margin-top: 80px;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  .line {
+    position: relative;
+    height: 5px;
+    border-radius: 10px;
+    width: 88%;
+    background-color: rgb(236, 236, 236);
+
+    &::after {
+      transition: 0.3s ease-in-out;
+      position: absolute;
+      content: "";
+      background-color: dodgerblue;
+      width: var(--parcent);
+      height: 100%;
+      border-radius: 10px;
+    }
+  }
+}
