@@ -40,6 +40,7 @@
         height: 10px;
         border-radius: 50%;
         border: 2px solid dodgerblue;
+
         background-color: white;
         top: -60%;
         font-family: sans-serif;
@@ -50,4 +51,9 @@
       }
     }
   }
+}
+
+.parcentColor {
+  display: flex;
+  gap: 150px;
 }

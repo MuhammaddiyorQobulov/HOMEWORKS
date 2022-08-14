@@ -11,9 +11,7 @@ class Slider extends Component {
     console.log(e);
     const width = e.clientX - 50;
     console.log(e.type);
-    const parcent =
-      (width * 100) / 1800 + (((width * 100) / 1800) % 10 > 5 ? 1 : 0);
-
+    const parcent = width / 18 + (width / 1.8 > 5 ? 1 : 0);
     this.setState({ sliderWidth: width, parcent: parseInt(parcent) });
   };
 
@@ -29,7 +27,7 @@ class Slider extends Component {
             "--slider-width": `${sliderWidth}px`,
           }}
           onClick={handleClick}
-        //   onMouseMove={handleClick}
+          //   onMouseMove={handleClick}
         >
           {" "}
           <div className="slider-dot"></div>
@@ -54,7 +52,10 @@ class Slider extends Component {
           </div>
         </div>
         <Horizontal parcent={parcent} />
-        <CircleParcent parcent={parcent} />
+        <div className="parcentColor">
+          <CircleParcent parcent={parcent} />
+          <CircleParcent parcent={parcent} color="#118EE8" />
+        </div>
       </>
     );
   }
