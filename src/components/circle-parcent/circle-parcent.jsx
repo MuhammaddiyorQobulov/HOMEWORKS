@@ -5,7 +5,6 @@ class CircleParcent extends Component {
   render() {
     const { parcent, color } = this.props;
     const circle = 440 - (440 * parcent) / 100;
-    console.log(circle);
     return (
       <div className="circle-parcent" style={{ "--circle-parcent": circle }}>
         <div className="skill">

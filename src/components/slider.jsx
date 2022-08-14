@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import CircleParcent from "./circle-parcent/circle-parcent";
 import Horizontal from "./horizontal-parcent";
+import { ceil } from "lodash";
 import "./slider.scss";
 class Slider extends Component {
   state = {
@@ -8,11 +9,9 @@ class Slider extends Component {
     parcent: 33,
   };
   handleClick = (e) => {
-    console.log(e);
     const width = e.clientX - 50;
-    console.log(e.type);
-    const parcent = width / 18 + (width / 1.8 > 5 ? 1 : 0);
-    this.setState({ sliderWidth: width, parcent: parseInt(parcent) });
+    const parcent = width / 18;
+    this.setState({ sliderWidth: width, parcent: ceil(parcent, 1) });
   };
 
   render() {
