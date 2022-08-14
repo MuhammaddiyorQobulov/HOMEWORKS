@@ -1,0 +1,59 @@
+.slider {
+  position: relative;
+  width: calc(100vw - 100px);
+  height: 10px;
+  background-color: rgb(236, 236, 236);
+  border-radius: 10px;
+  cursor: pointer;
+  background: linear-gradient(
+    to right,
+    rgb(236, 236, 236) 0% var(--dot1),
+    dodgerblue var(--dot1) var(--dot2),
+    rgb(236, 236, 236) var(--dot2)
+  );
+  span {
+    position: absolute;
+    top: -33%;
+    margin-left: -5px;
+    left: var(--dot1);
+    content: "";
+    width: 15px;
+    height: 15px;
+    border-radius: 50%;
+    border: 2px solid dodgerblue;
+    background-color: white;
+    z-index: 1;
+    pointer-events: none;
+
+    nav {
+      display: block;
+      width: 40px;
+      height: 25px;
+      margin: 20px -10px;
+      font-weight: 700;
+      background-color: #292929;
+      color: white;
+      text-align: center;
+      padding-top: 3px;
+      border-radius: 5px;
+    }
+  }
+
+  .dot1 {
+    left: var(--dot2);
+  }
+}
+
+.showDistance {
+  border: 1px solid #d9d9d9;
+  padding: 10px 20px;
+  background-color: white;
+  border-radius: 3px;
+  margin-top: 80px;
+  transition: 0.3s ease-in-out;
+
+  &:hover {
+    color: dodgerblue;
+    border: 1px solid dodgerblue;
+  }
+}
