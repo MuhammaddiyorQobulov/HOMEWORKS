@@ -9,7 +9,7 @@ class Slider extends Component {
     parcent: 33,
   };
   handleClick = (e) => {
-    const width = e.clientX - 50;
+    const width = e.clientX - 60;
     const parcent = width / 18;
     this.setState({ sliderWidth: width, parcent: ceil(parcent, 1) });
   };
