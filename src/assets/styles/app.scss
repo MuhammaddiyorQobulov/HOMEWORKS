@@ -1,0 +1,56 @@
+.app {
+  display: flex;
+  border: 0.1px solid #9ec0c2;
+  border-collapse: collapse;
+  height: 100vh;
+
+  .dashboard {
+    height: 96.8%;
+    border: 0.1px solid #9ec0c2;
+    background: #fff;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 16px;
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      height: 50px;
+      padding-left: 8px;
+    }
+    .search {
+      display: flex;
+      background-color: #f2f4f6;
+      height: 40px;
+      border-radius: 8px;
+      padding: 10px 0 10px 14px;
+      gap: 10px;
+      margin-top: 15px;
+      button {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border: none;
+        background-color: transparent;
+        svg {
+          width: 16px;
+          height: 16px;
+          path {
+            fill: #b5bdc9;
+          }
+        }
+      }
+
+      input {
+        border: none;
+        outline: none;
+        background-color: transparent;
+        width: 80%;
+      }
+    }
+  }
+  .datas {
+    width: 100%;
+  }
+}

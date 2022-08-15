@@ -1,0 +1,49 @@
+.menu {
+  margin-top: 8px;
+  color: #526581;
+  cursor: pointer;
+  &-part {
+    padding: 10px 0px 10px 10px;
+    height: 40px;
+    border-radius: 8px;
+    gap: 12px;
+    display: flex;
+    align-items: center;
+    color: #526581;
+    list-style: none;
+    text-decoration: none;
+
+    svg {
+      path {
+        fill: #526581;
+      }
+    }
+    &.active {
+      background: dodgerblue;
+      color: white;
+      svg {
+        path {
+          fill: white;
+        }
+      }
+    }
+    span {
+      font-weight: 600;
+      font-size: 17px;
+    }
+    article {
+      cursor: pointer;
+      margin-left: auto;
+    }
+  }
+  .acardion {
+    padding: 16px 0px 16px 16px;
+    height: 150px;
+    overflow-y: scroll;
+    p {
+      border-bottom: 1px solid #999;
+      padding: 0 5px 5px 5px;
+      line-height: 25px;
+    }
+  }
+}
