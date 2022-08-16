@@ -111,7 +111,7 @@ const Menu = ({ collapsed, title, icon, path, selectedProduct, products }) => {
           }}
           style={{ marginRight: collapsed && "15px" }}
         >
-          {collapsed ? (state ? down : up) : null}
+          {collapsed ? (state ? up : down) : null}
         </article>
       </div>
       {title === "Users" && state && collapsed && (
