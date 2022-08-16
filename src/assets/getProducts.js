@@ -5,6 +5,7 @@ const fakeProducts = [
     price: "583.00",
     seller: "Luna",
     img: "https://loremflickr.com/500/500/food",
+    path: "/users/infos:productID",
   },
   {
     id: "556636",
@@ -12,6 +13,7 @@ const fakeProducts = [
     price: "908.00",
     seller: "Forest",
     img: "https://loremflickr.com/500/500/transport",
+    path: "/users/infos:productID",
   },
   {
     id: "809085",
@@ -19,6 +21,7 @@ const fakeProducts = [
     price: "356.00",
     seller: "Abagail",
     img: "https://loremflickr.com/500/500/food",
+    path: "/users/infos:productID",
   },
   {
     id: "136604",
@@ -26,6 +29,7 @@ const fakeProducts = [
     price: "107.00",
     seller: "Humberto",
     img: "https://loremflickr.com/500/500/sports",
+    path: "/users/infos:productID",
   },
   {
     id: "363308",
@@ -33,6 +37,7 @@ const fakeProducts = [
     price: "171.00",
     seller: "Deron",
     img: "https://loremflickr.com/500/500/business",
+    path: "/users/infos:productID",
   },
   {
     id: "682616",
@@ -40,6 +45,7 @@ const fakeProducts = [
     price: "70.00",
     seller: "Deon",
     img: "https://loremflickr.com/500/500/people",
+    path: "/users/infos:productID",
   },
   {
     id: "768032",
@@ -47,6 +53,7 @@ const fakeProducts = [
     price: "915.00",
     seller: "Jalon",
     img: "https://loremflickr.com/500/500/sports",
+    path: "/users/infos:productID",
   },
   {
     id: "416682",
@@ -54,6 +61,7 @@ const fakeProducts = [
     price: "116.00",
     seller: "Daphney",
     img: "https://loremflickr.com/500/500/animals",
+    path: "/users/infos:productID",
   },
   {
     id: "645061",
@@ -61,6 +69,7 @@ const fakeProducts = [
     price: "865.00",
     seller: "Elissa",
     img: "https://loremflickr.com/500/500/cats",
+    path: "/users/infos:productID",
   },
   {
     id: "275288",
@@ -68,6 +77,7 @@ const fakeProducts = [
     price: "214.00",
     seller: "Marquise",
     img: "https://loremflickr.com/500/500/sports",
+    path: "/users/infos:productID",
   },
 ];
 

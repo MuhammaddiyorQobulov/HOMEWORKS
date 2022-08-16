@@ -12,24 +12,43 @@
     color: #526581;
     list-style: none;
     text-decoration: none;
-
-    svg {
-      path {
-        fill: #526581;
-      }
+    i {
+      color: #526581;
     }
     &.active {
       background: dodgerblue;
       color: white;
-      svg {
-        path {
-          fill: white;
+      i {
+        color: #fff;
+      }
+      .menu-link {
+        span {
+          width: 100px;
+          font-weight: 600;
+          color: #fff;
+        }
+        svg {
+          path {
+            fill: white;
+          }
         }
       }
     }
-    span {
-      font-weight: 600;
-      font-size: 17px;
+    .menu-link {
+      display: flex;
+      width: max-content;
+      gap: 10px;
+      svg {
+        path {
+          fill: #526581;
+        }
+      }
+      span {
+        font-weight: 600;
+        font-size: 17px;
+        width: 120px;
+        color: #526581;
+      }
     }
     article {
       cursor: pointer;

@@ -1,12 +1,11 @@
 import React from "react";
-import { Route, Switch } from "react-router-dom";
+import { Route } from "react-router-dom";
 import Menu from "../menu/menu";
 import "./menus.scss";
 
-const Menus = ({ menus, onSelect, collapsed, onSelectedProduct }) => {
+const Menus = ({ menus, collapsed, onSelectedProduct, products }) => {
   return (
     <div className="menus">
-      {/* <Switch> */}
       {menus.map((menu, idx) => (
         <Route
           path="/"
@@ -14,15 +13,15 @@ const Menus = ({ menus, onSelect, collapsed, onSelectedProduct }) => {
           render={(props) => (
             <Menu
               {...props}
-              onSelectedProduct={onSelectedProduct}
+              selectedProduct={onSelectedProduct}
               key={menu.title}
               collapsed={collapsed}
+              products={products}
               {...menu}
             />
           )}
         />
       ))}
-      {/* </Switch> */}
     </div>
   );
 };

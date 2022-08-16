@@ -6,6 +6,8 @@ import Logo from "./components/menu-secction/logo";
 import "bootstrap/dist/css/bootstrap.min.css";
 import userImg from "./assets/Avater.png";
 import "./assets/styles/app.scss";
+import Navbar from "./components/navbar-section/navbar-section";
+import { Route } from "react-router-dom";
 import {
   home,
   clipboard,
@@ -17,7 +19,7 @@ import {
   entrence,
   user,
 } from "./assets/icons";
-import Navbar from "./components/navbar-section/navbar-section";
+import { getFakeProducts } from "./assets/getProducts";
 
 class App extends Component {
   state = {
@@ -32,7 +34,8 @@ class App extends Component {
       { path: "/news", title: "News", icon: news },
       { path: "/settings", title: "Settings", icon: setting },
     ],
-    selectedProduct: {},
+    products: getFakeProducts(),
+    selectedProduct: 0,
     users: [
       {
         name: "Richard",
@@ -55,8 +58,7 @@ class App extends Component {
   };
 
   render() {
-    const { menus, users, menuTitle, collapsed, activeIdx, selectedProduct } =
-      this.state;
+    const { menus, users, collapsed, selectedProduct, products } = this.state;
     const { onCollapse, onSelectedProduct } = this;
     return (
       <div className="app">
@@ -67,13 +69,20 @@ class App extends Component {
               onSelectedProduct={onSelectedProduct}
               menus={menus}
               collapsed={collapsed}
+              products={products}
             />
           </div>
           <User users={users} collapsed={collapsed} />
         </div>
         <div className="datas">
           <Navbar onCollapse={onCollapse} />
-          <Content product={selectedProduct} />
+          <Route
+            path={"/users/:productID"}
+            render={(props) => (
+              <Content {...props} productId={selectedProduct} />
+            )}
+          />
+          {/* <Content product={selectedProduct} /> */}
         </div>
       </div>
     );
