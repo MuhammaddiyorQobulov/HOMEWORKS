@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import Content from "./components/content-section/content";
+import Contents from "./components/content-section/contents";
 import Menus from "./components/menu-secction/menus/menus";
 import User from "./components/menu-secction/user/user";
 import Logo from "./components/menu-secction/logo";
@@ -7,7 +7,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import userImg from "./assets/Avater.png";
 import "./assets/styles/app.scss";
 import Navbar from "./components/navbar-section/navbar-section";
-import { Route } from "react-router-dom";
+import { Route, Switch } from "react-router-dom";
 import {
   home,
   clipboard,
@@ -82,12 +82,14 @@ class App extends Component {
         </div>
         <div className="datas">
           <Navbar onCollapse={onCollapse} menuTitle={menuTitle} />
-          <Route
-            path={"/users/:productID"}
-            render={(props) => (
-              <Content {...props} productId={selectedProduct} />
+          <Switch>
+            {menus.map(
+              (menu, idx) =>
+                window.location.pathname.includes(menu.path) && (
+                  <Contents key={menu.path} menu={menu} />
+                )
             )}
-          />
+          </Switch>
           {/* <Content product={selectedProduct} /> */}
         </div>
       </div>

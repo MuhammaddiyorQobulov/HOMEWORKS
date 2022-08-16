@@ -7,6 +7,7 @@ class Content extends Component {
     product: {},
     productId: NaN,
   };
+
   componentDidMount() {
     const { productID } = this.props.match.params;
     getProduct(productID).then((product) => {
@@ -15,6 +16,7 @@ class Content extends Component {
       image.src = imgURL;
       image.onload = () =>
         this.setState({ product, loading: false, productId: productID });
+      console.log("1");
     });
   }
 
@@ -28,22 +30,27 @@ class Content extends Component {
         image.src = imgURL;
         image.onload = () =>
           this.setState({ product, loading: false, productId: productID });
+        console.log("2");
       });
     }
   }
 
   render() {
+    console.log("3");
     const { product, loading } = this.state;
+
     if (loading)
       return (
-        <div
-          className="d-flex justify-content-center align-items-center w-100 "
-          style={{ height: "80vh" }}
-        >
-          <div className="spinner-border " role="status">
-            <span className="visually-hidden">Loading...</span>
+        <>
+          <div
+            className="d-flex justify-content-center align-items-center w-100 "
+            style={{ height: "80vh" }}
+          >
+            <div className="spinner-border " role="status">
+              <span className="visually-hidden">Loading...</span>
+            </div>
           </div>
-        </div>
+        </>
       );
 
     return (
