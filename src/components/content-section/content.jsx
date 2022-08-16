@@ -47,7 +47,7 @@ class Content extends Component {
       );
 
     return (
-      <div>
+      <div className="content">
         <img src={product.img} alt="product img" />
         <h1>Name: {product.name}</h1>
         <h3>Price : ${product.price}</h3>
