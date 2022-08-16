@@ -34,7 +34,6 @@ class Content extends Component {
 
   render() {
     const { product, loading } = this.state;
-    const { match } = this.props;
     if (loading)
       return (
         <div
