@@ -5,20 +5,35 @@ class Content extends Component {
   state = {
     loading: true,
     product: {},
+    productId: NaN,
   };
   componentDidMount() {
     const { productID } = this.props.match.params;
-    console.log(productID);
     getProduct(productID).then((product) => {
       const imgURL = product.img;
       const image = new Image();
       image.src = imgURL;
-      image.onload = () => this.setState({ product, loading: false });
+      image.onload = () =>
+        this.setState({ product, loading: false, productId: productID });
     });
   }
 
+  componentDidUpdate(prevProps, productId) {
+    productId = this.state.productId;
+    console.log("a");
+    const { productID } = this.props.match.params;
+    if (productId !== productID) {
+      getProduct(productID).then((product) => {
+        const imgURL = product.img;
+        const image = new Image();
+        image.src = imgURL;
+        image.onload = () =>
+          this.setState({ product, loading: false, productId: productID });
+      });
+    }
+  }
+
   render() {
-    console.log(this.state);
     const { product, loading } = this.state;
     if (loading)
       return (
