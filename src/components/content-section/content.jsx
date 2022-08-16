@@ -20,7 +20,6 @@ class Content extends Component {
 
   componentDidUpdate(prevProps, productId) {
     productId = this.state.productId;
-    console.log("a");
     const { productID } = this.props.match.params;
     if (productId !== productID) {
       getProduct(productID).then((product) => {
@@ -35,6 +34,7 @@ class Content extends Component {
 
   render() {
     const { product, loading } = this.state;
+    const { match } = this.props;
     if (loading)
       return (
         <div
