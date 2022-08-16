@@ -99,7 +99,7 @@ const Menu = ({ collapsed, title, icon, path, selectedProduct, products }) => {
           window.location.pathname.slice(0, path.length) === path && "active"
         }`}
       >
-        <Link to={path}>
+        <Link to={path} className="navbar-brand">
           <div className="menu-link">
             <nav>{icon}</nav>
             {collapsed && <span>{title}</span>}
