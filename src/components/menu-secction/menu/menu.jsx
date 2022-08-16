@@ -3,7 +3,15 @@ import "./menu.scss";
 import { down, up } from "../../../assets/icons";
 import { Link } from "react-router-dom";
 
-const Menu = ({ collapsed, title, icon, path, selectedProduct, products }) => {
+const Menu = ({
+  collapsed,
+  title,
+  icon,
+  path,
+  selectedProduct,
+  products,
+  onMenuTitle,
+}) => {
   // const fakeProducts = [
   //   {
   //     id: "867255",
@@ -100,7 +108,7 @@ const Menu = ({ collapsed, title, icon, path, selectedProduct, products }) => {
         }`}
       >
         <Link to={path} className="navbar-brand">
-          <div className="menu-link">
+          <div onClick={() => onMenuTitle(title)} className="menu-link">
             <nav>{icon}</nav>
             {collapsed && <span>{title}</span>}
           </div>

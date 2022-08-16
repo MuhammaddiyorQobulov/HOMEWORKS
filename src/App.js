@@ -36,6 +36,7 @@ class App extends Component {
     ],
     products: getFakeProducts(),
     selectedProduct: 0,
+    menuTitle: "Dashboard",
     users: [
       {
         name: "Richard",
@@ -56,10 +57,14 @@ class App extends Component {
   onSelectedProduct = (product) => {
     this.setState({ selectedProduct: product });
   };
+  onMenuTitle = (title) => {
+    this.setState({ menuTitle: title });
+  };
 
   render() {
-    const { menus, users, collapsed, selectedProduct, products } = this.state;
-    const { onCollapse, onSelectedProduct } = this;
+    const { menus, users, collapsed, selectedProduct, products, menuTitle } =
+      this.state;
+    const { onCollapse, onSelectedProduct, onMenuTitle } = this;
     return (
       <div className="app">
         <div className="dashboard">
@@ -70,12 +75,13 @@ class App extends Component {
               menus={menus}
               collapsed={collapsed}
               products={products}
+              onMenuTitle={onMenuTitle}
             />
           </div>
           <User users={users} collapsed={collapsed} />
         </div>
         <div className="datas">
-          <Navbar onCollapse={onCollapse} />
+          <Navbar onCollapse={onCollapse} menuTitle={menuTitle} />
           <Route
             path={"/users/:productID"}
             render={(props) => (
