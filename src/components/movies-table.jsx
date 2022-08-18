@@ -13,7 +13,7 @@ const MoviesTable = ({
 }) => {
   return (
     <>
-      <table className='table table-stripped table-hovered'>
+      <table className="table table-stripped table-hovered">
         <thead>
           <tr>
             <th>#</th>
@@ -37,10 +37,11 @@ const MoviesTable = ({
                   isLiked={Boolean(movie.isLiked)}
                   onLike={() => onLike(movie._id)}
                 />
-                <button className='btn btn-info btn-sm ms-2'>Edit</button>
+                <button className="btn btn-info btn-sm ms-2">Edit</button>
                 <button
-                  className='btn btn-danger btn-sm ms-2'
-                  onClick={() => onDeleteMovie(movie._id)}>
+                  className="btn btn-danger btn-sm ms-2"
+                  onClick={() => onDeleteMovie(movie._id)}
+                >
                   delete
                 </button>
               </td>

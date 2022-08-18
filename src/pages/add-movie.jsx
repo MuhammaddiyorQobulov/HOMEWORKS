@@ -10,7 +10,6 @@ String.prototype.toCapital = function () {
 class AddMovie extends Component {
   state = {
     disabled: false,
-
     movie: {
       genre: "Detective",
       title: "Break Out",
@@ -18,13 +17,12 @@ class AddMovie extends Component {
       rate: "2",
       stock: "150",
     },
-
-    errors: {},
   };
 
   handleSubmit = (e) => {
     e.preventDefault();
     this.setState({ disabled: true });
+    this.props.addMovie(this.state.movie);
 
     const { title, genre } = this.state.movie;
     setTimeout(() => {
@@ -45,6 +43,13 @@ class AddMovie extends Component {
       <>
         <h1>Add Movie Form</h1>
         <form onSubmit={this.handleSubmit}>
+          <Input
+            name="genre"
+            label="Genre Name"
+            placeholder="Enter new Genre Name"
+            value={movie.genre}
+            onChange={this.handleChange}
+          />
           <Input
             name="title"
             label="Movie Name"
