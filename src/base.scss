@@ -1,0 +1,19 @@
+@import "~bootstrap/dist/css/bootstrap.min.css";
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: -apple-system, "system-ui", "Segoe UI", Helvetica, Arial,
+    sans-serif, "Apple Color Emoji", "Segoe UI Emoji";
+}
+
+body {
+  height: 100vh;
+}
+.pagination li {
+  cursor: pointer;
+}
+
+.wrapper {
+  height: 100vh;
+}
