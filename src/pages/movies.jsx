@@ -57,7 +57,6 @@ class Movies extends Component {
 
   renderNewMovie = () => {
     const newMovies = JSON.parse(localStorage.getItem("newMovies"));
-    console.log(newMovies);
     const movies = newMovies.map(({ id, rate, title, genre, stock }, idx) => {
       let genreID = "";
       if (genre === "Detective") {
@@ -87,7 +86,6 @@ class Movies extends Component {
     const genres = fakeGetGenres();
     genres.unshift({ name: "All", _id: "all" });
     movies = [...movies, ...this.renderNewMovie()];
-    console.log(movies);
     setTimeout(() => this.setState({ loading: false, movies, genres }), 1000);
   }
 

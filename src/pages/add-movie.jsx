@@ -17,12 +17,31 @@ class AddMovie extends Component {
       rate: "2",
       stock: "150",
     },
+    errors: {},
+  };
+
+  validate = () => {
+    const { genre, title, id, rate, stock } = this.state.movie;
+    const errors = {};
+
+    if (genre.trim() === "") errors.genre = "Genre is required!";
+    if (title.trim() === "") errors.title = "Email is required!";
+    if (id.trim() === "") errors.id = "Email is required!";
+    if (rate.trim() === "") errors.rate = "Email is required!";
+    if (stock.trim() === "") errors.stock = "Email is required!";
+
+    return Object.values(errors).length ? errors : false;
   };
 
   handleSubmit = (e) => {
     e.preventDefault();
     this.setState({ disabled: true });
     this.props.addMovie(this.state.movie);
+    const errors = this.validate();
+    if (errors) {
+      this.setState({ errors, disabled: false });
+      return toast.error("Exist errors");
+    }
 
     const { title, genre } = this.state.movie;
     setTimeout(() => {
@@ -31,14 +50,22 @@ class AddMovie extends Component {
     }, 2000);
   };
 
+  validateField = (value, name) => {
+    const errors = { ...this.state.errors };
+    if (value.trim() === "") errors[name] = name.toCapital() + " is required!";
+    else delete errors[name];
+    return errors;
+  };
+
   handleChange = (e) => {
     const { value, name } = e.target;
     const { movie } = this.state;
-    this.setState({ movie: { ...movie, [name]: value } });
+    const errors = this.validateField(value, name);
+    this.setState({ movie: { ...movie, [name]: value }, errors });
   };
 
   render() {
-    const { disabled, movie } = this.state;
+    const { disabled, movie, errors } = this.state;
     return (
       <>
         <h1>Add Movie Form</h1>
@@ -49,6 +76,7 @@ class AddMovie extends Component {
             placeholder="Enter new Genre Name"
             value={movie.genre}
             onChange={this.handleChange}
+            error={errors.genre}
           />
           <Input
             name="title"
@@ -56,6 +84,7 @@ class AddMovie extends Component {
             placeholder="Enter new  Movie Name"
             value={movie.title}
             onChange={this.handleChange}
+            error={errors.title}
           />
           <Input
             name="id"
@@ -63,6 +92,7 @@ class AddMovie extends Component {
             placeholder="Enter Movie ID"
             value={movie.id}
             onChange={this.handleChange}
+            error={errors.id}
           />
           <Input
             name="rate"
@@ -70,6 +100,7 @@ class AddMovie extends Component {
             placeholder="Enter Movie Rate"
             value={movie.rate}
             onChange={this.handleChange}
+            error={errors.rate}
           />
           <Input
             name="stock"
@@ -77,6 +108,7 @@ class AddMovie extends Component {
             placeholder="Enter Movie Stock"
             value={movie.stock}
             onChange={this.handleChange}
+            error={errors.stock}
           />
 
           <button className="btn btn-primary" disabled={disabled}>

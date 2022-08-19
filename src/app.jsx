@@ -19,7 +19,6 @@ class App extends Component {
     if (!localStorage.hasOwnProperty("newMovies")) {
       localStorage.setItem("newMovies", JSON.stringify([]));
     }
-    console.log(localStorage.hasOwnProperty("newMovies"));
 
     return (
       <>
