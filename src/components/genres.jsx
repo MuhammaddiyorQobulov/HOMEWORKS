@@ -11,7 +11,7 @@ const Genres = ({ genres = [], genreID, onSelect }) => {
               to={`/${genre.name}`}
               className={`list-group-item ${
                 pathname === `/${genre.name}` && "active"
-              }`}
+              } ${pathname === "/" && genre.name === "All" && "active"}  `}
               style={{ cursor: "pointer" }}
               onClick={() => onSelect(genre._id)}
             >
