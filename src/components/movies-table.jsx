@@ -1,4 +1,5 @@
 import PropTypes from "prop-types";
+import { Link } from "react-router-dom";
 import Like from "./like";
 import Pagination from "./pagination";
 
@@ -10,13 +11,13 @@ const MoviesTable = ({
   currentPage,
   onDeleteMovie,
   total,
+  onEdit,
 }) => {
   return (
     <>
       <table className="table table-stripped table-hovered">
         <thead>
           <tr>
-            <th>#</th>
             <th>Title</th>
             <th>Genre</th>
             <th>Stock</th>
@@ -37,7 +38,19 @@ const MoviesTable = ({
                   isLiked={Boolean(movie.isLiked)}
                   onLike={() => onLike(movie._id)}
                 />
-                <button className="btn btn-info btn-sm ms-2">Edit</button>
+                <Link
+                  to={{
+                    pathname: "/add-movie",
+                    state: { movie },
+                  }}
+                >
+                  <button
+                    onClick={() => onEdit(movie._id)}
+                    className="btn btn-info btn-sm ms-2"
+                  >
+                    Edit
+                  </button>
+                </Link>
                 <button
                   className="btn btn-danger btn-sm ms-2"
                   onClick={() => onDeleteMovie(movie._id)}

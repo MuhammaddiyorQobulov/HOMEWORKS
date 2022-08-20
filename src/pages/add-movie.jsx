@@ -1,42 +1,45 @@
+import { faker } from "@faker-js/faker";
 import { Component } from "react";
 import { toast } from "react-toastify";
 import Input from "../components/common/input";
+import Select from "../components/common/select";
+import { fakeGetGenres } from "../services";
+import { fakeGetGenre } from "../services/fake-get-genres";
 
-String.prototype.toCapital = function () {
-  const first = this[0];
-  return first.toUpperCase() + this.substring(1);
-};
-
+const genres = fakeGetGenres();
 class AddMovie extends Component {
   state = {
     disabled: false,
     movie: {
-      genre: "Detective",
-      title: "Break Out",
-      id: "123123",
-      rate: "2",
-      stock: "150",
+      genre: "",
+      title: "",
+      dailyRentalRate: "",
+      numberInStock: "",
+      _id: this.props.location.state
+        ? this.props.location.state.movie._id
+        : faker.database.mongodbObjectId(),
     },
     errors: {},
   };
 
   validate = () => {
-    const { genre, title, id, rate, stock } = this.state.movie;
+    const { title, dailyRentalRate, numberInStock } = this.state.movie;
     const errors = {};
 
-    if (genre.trim() === "") errors.genre = "Genre is required!";
-    if (title.trim() === "") errors.title = "Email is required!";
-    if (id.trim() === "") errors.id = "Email is required!";
-    if (rate.trim() === "") errors.rate = "Email is required!";
-    if (stock.trim() === "") errors.stock = "Email is required!";
+    if (title.trim() === "") errors.title = "Title is required!";
+    if (dailyRentalRate.trim() === "")
+      errors.dailyRentalRate = "dailyRentalRate is required!";
+    if (numberInStock.trim() === "")
+      errors.numberInStock = "numberInStock is required!";
 
     return Object.values(errors).length ? errors : false;
   };
 
   handleSubmit = (e) => {
     e.preventDefault();
+    const editMovie = this.props.location.state;
     this.setState({ disabled: true });
-    this.props.addMovie(this.state.movie);
+
     const errors = this.validate();
     if (errors) {
       this.setState({ errors, disabled: false });
@@ -44,9 +47,16 @@ class AddMovie extends Component {
     }
 
     const { title, genre } = this.state.movie;
+
+    editMovie && console.log(editMovie);
     setTimeout(() => {
+      const movie = { ...this.state.movie };
+      movie.genre = editMovie
+        ? editMovie.movie.genre
+        : fakeGetGenre(movie.genre);
+      this.props.onAddMovie(movie);
       toast.success(`Added Movie, Genre: ${genre} Name: ${title}`);
-      this.setState({ disabled: false });
+      this.props.push("/movies");
     }, 2000);
   };
 
@@ -68,15 +78,16 @@ class AddMovie extends Component {
     const { disabled, movie, errors } = this.state;
     return (
       <>
-        <h1>Add Movie Form</h1>
+        <h1>Movie Form</h1>
         <form onSubmit={this.handleSubmit}>
-          <Input
+          <Select
             name="genre"
             label="Genre Name"
-            placeholder="Enter new Genre Name"
+            placeholder="Select Genre"
             value={movie.genre}
             onChange={this.handleChange}
             error={errors.genre}
+            options={genres}
           />
           <Input
             name="title"
@@ -87,32 +98,23 @@ class AddMovie extends Component {
             error={errors.title}
           />
           <Input
-            name="id"
-            label="Movie ID"
-            placeholder="Enter Movie ID"
-            value={movie.id}
-            onChange={this.handleChange}
-            error={errors.id}
-          />
-          <Input
-            name="rate"
+            name="dailyRentalRate"
             label="Movie Rate"
             placeholder="Enter Movie Rate"
-            value={movie.rate}
+            value={movie.dailyRentalRate}
             onChange={this.handleChange}
-            error={errors.rate}
+            error={errors.dailyRentalRate}
           />
           <Input
-            name="stock"
+            name="numberInStock"
             label="Movie Stock"
             placeholder="Enter Movie Stock"
-            value={movie.stock}
+            value={movie.numberInStock}
             onChange={this.handleChange}
-            error={errors.stock}
+            error={errors.numberInStock}
           />
-
           <button className="btn btn-primary" disabled={disabled}>
-            Add Movie
+            Save
           </button>
         </form>
       </>

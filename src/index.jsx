@@ -14,3 +14,8 @@ root.render(
     <ToastContainer autoClose={8000} />
   </BrowserRouter>
 );
+
+String.prototype.toCapital = function () {
+  const first = this[0];
+  return first.toUpperCase() + this.substring(1);
+};

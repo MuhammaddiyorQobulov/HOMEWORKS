@@ -2,10 +2,6 @@ import { Component } from "react";
 import { toast } from "react-toastify";
 import Input from "../components/common/input";
 
-String.prototype.toCapital = function () {
-  const first = this[0];
-  return first.toUpperCase() + this.substring(1);
-};
 
 class Login extends Component {
   state = {

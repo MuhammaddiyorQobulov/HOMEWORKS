@@ -4,11 +4,13 @@ export function fakeGetMovies() {
       _id: "62e0dd5ca92da7816ff603d3",
       title: "The Facebook New Film",
       genre: {
-        _id: "62e0dd25a92da7816ff603cf",
-        name: "Horror",
+        genre: {
+          _id: "62e0dd25a92da7816ff603cf",
+          name: "Horror",
+        },
+        numberInStock: 5,
+        dailyRentalRate: 200,
       },
-      numberInStock: 5,
-      dailyRentalRate: 200,
     },
     {
       _id: "62e20594a01bc724f00bf9d4",
@@ -65,7 +67,7 @@ export function fakeGetMovies() {
       title: "Mendirman Jaloliddin",
       genre: {
         _id: "62e205aea01bc724f00bf9db",
-        name: "Dramma",
+        name: "Drama",
       },
       numberInStock: 5,
       dailyRentalRate: 200,
@@ -75,7 +77,7 @@ export function fakeGetMovies() {
       title: "Mening ismim Xon",
       genre: {
         _id: "62e205aea01bc724f00bf9db",
-        name: "Dramma",
+        name: "Drama",
       },
       numberInStock: 5,
       dailyRentalRate: 200,

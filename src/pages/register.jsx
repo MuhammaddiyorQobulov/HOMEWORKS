@@ -2,11 +2,6 @@ import { Component } from "react";
 import { toast } from "react-toastify";
 import Input from "../components/common/input";
 
-String.prototype.toCapital = function () {
-  const first = this[0];
-  return first.toUpperCase() + this.substring(1);
-};
-
 class Register extends Component {
   state = {
     disabled: false,
@@ -81,42 +76,42 @@ class Register extends Component {
         <h1>Register Form</h1>
         <form onSubmit={this.handleSubmit}>
           <Input
-            name="username"
-            label="Username"
-            placeholder="Enter your username"
+            name='username'
+            label='Username'
+            placeholder='Enter your username'
             value={user.username}
             onChange={this.handleChange}
             error={errors.username}
           />
           <Input
-            name="email"
-            label="Email"
-            placeholder="Enter your email"
-            type="email"
+            name='email'
+            label='Email'
+            placeholder='Enter your email'
+            type='email'
             value={user.email}
             onChange={this.handleChange}
             error={errors.email}
           />
           <Input
-            name="password"
-            label="Password"
-            placeholder="Enter your password"
+            name='password'
+            label='Password'
+            placeholder='Enter your password'
             // type="password"
             value={user.password}
             onChange={this.handleChange}
             error={errors.password}
           />
           <Input
-            name="confirmpassword"
-            label="Confirm Password"
-            placeholder="Confirm password"
+            name='confirmpassword'
+            label='Confirm Password'
+            placeholder='Confirm password'
             // type="password"
             value={user.confirmpassword}
             onChange={this.handleChange}
             error={errors.confirmpassword}
           />
 
-          <button className="btn btn-primary" disabled={disabled}>
+          <button className='btn btn-primary' disabled={disabled}>
             Register
           </button>
         </form>
