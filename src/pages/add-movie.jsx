@@ -114,7 +114,7 @@ class AddMovie extends Component {
             error={errors.numberInStock}
           />
           <button className="btn btn-primary" disabled={disabled}>
-            Save
+            Save {this.props.location.state && "Edits"}
           </button>
         </form>
       </>

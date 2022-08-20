@@ -11,11 +11,15 @@ class App extends Component {
   };
 
   handleAddMovie = (movie) => {
-    let editMovieIdx = this.state.movies.findIndex((m) => m._id === movie._id);
-    console.log(editMovieIdx);
-    this.state.movies[editMovieIdx] = movie;
-    const movies = [...this.state.movies, editMovieIdx > 0 && movie];
+    let isExistIdx = this.state.movies.findIndex((m) => m._id === movie._id);
+    this.state.movies[isExistIdx] = movie;
+    const movies = [...this.state.movies];
+    isExistIdx < 0 && movies.push(movie);
+
     this.setState({ movies });
+    setTimeout(() => {
+      console.log(movies);
+    }, 5);
   };
 
   render() {

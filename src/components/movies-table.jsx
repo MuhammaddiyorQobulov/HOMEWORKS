@@ -12,6 +12,7 @@ const MoviesTable = ({
   onDeleteMovie,
   total,
   onEdit,
+  
 }) => {
   return (
     <>
