@@ -1,14 +1,14 @@
 import { Component } from "react";
 import { toast } from "react-toastify";
 import Input from "../components/common/input";
-
+import { object, number, string } from "yup";
 
 class Login extends Component {
   state = {
     disabled: false,
     user: {
-      email: "ars@domain.com",
-      password: "123123",
+      email: "example@gmail.com",
+      password: "12341234",
     },
     errors: {},
   };
@@ -23,11 +23,19 @@ class Login extends Component {
     return Object.values(errors).length ? errors : false;
   };
 
-  handleSubmit = (e) => {
+  handleSubmit = async (e) => {
     e.preventDefault();
     this.setState({ disabled: true });
 
     const errors = this.validate();
+
+    const schema = object({
+      email: string().email().required(),
+      password: string().min(4).required(),
+    });
+
+    const formData = await schema.isValid(this.state.user);
+    console.log(formData);
 
     if (errors) {
       this.setState({ errors, disabled: false });
@@ -66,25 +74,25 @@ class Login extends Component {
         <h1>Login Form</h1>
         <form onSubmit={this.handleSubmit}>
           <Input
-            name='email'
-            label='Email'
-            placeholder='Enter your email'
-            type='email'
+            name="email"
+            label="Email"
+            placeholder="Enter your email"
+            type="email"
             value={user.email}
             onChange={this.handleChange}
             error={errors.email}
           />
           <Input
-            name='password'
-            label='Password'
-            placeholder='Enter your password'
-            type='password'
+            name="password"
+            label="Password"
+            placeholder="Enter your password"
+            type="password"
             value={user.password}
             onChange={this.handleChange}
             error={errors.password}
           />
 
-          <button className='btn btn-primary' disabled={disabled}>
+          <button className="btn btn-primary" disabled={disabled}>
             Login
           </button>
         </form>
