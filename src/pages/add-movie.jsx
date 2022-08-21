@@ -8,15 +8,20 @@ import { fakeGetGenre } from "../services/fake-get-genres";
 
 const genres = fakeGetGenres();
 class AddMovie extends Component {
+  editMovieArr = this.props.location.state;
   state = {
     disabled: false,
     movie: {
-      genre: "",
-      title: "",
-      dailyRentalRate: "",
-      numberInStock: "",
-      _id: this.props.location.state
-        ? this.props.location.state.movie._id
+      genre: this.editMovieArr ? this.editMovieArr.movie.genre._id : "",
+      title: this.editMovieArr ? this.editMovieArr.movie.title : "",
+      dailyRentalRate: this.editMovieArr
+        ? this.editMovieArr.movie.dailyRentalRate
+        : "",
+      numberInStock: this.editMovieArr
+        ? this.editMovieArr.movie.numberInStock
+        : "",
+      _id: this.editMovieArr
+        ? this.editMovieArr.movie._id
         : faker.database.mongodbObjectId(),
     },
     errors: {},
@@ -27,9 +32,9 @@ class AddMovie extends Component {
     const errors = {};
 
     if (title.trim() === "") errors.title = "Title is required!";
-    if (dailyRentalRate.trim() === "")
+    if (dailyRentalRate.length === 0)
       errors.dailyRentalRate = "dailyRentalRate is required!";
-    if (numberInStock.trim() === "")
+    if (numberInStock.length === 0)
       errors.numberInStock = "numberInStock is required!";
 
     return Object.values(errors).length ? errors : false;
@@ -55,7 +60,11 @@ class AddMovie extends Component {
         ? editMovie.movie.genre
         : fakeGetGenre(movie.genre);
       this.props.onAddMovie(movie);
-      toast.success(`Added Movie, Genre: ${genre} Name: ${title}`);
+      toast.success(
+        `${
+          editMovie ? "Editted" : "Added"
+        } Movie, Genre: ${genre} Name: ${title}`
+      );
       this.props.push("/movies");
     }, 2000);
   };

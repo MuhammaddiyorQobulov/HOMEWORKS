@@ -82,7 +82,7 @@ class Movies extends Component {
       columnSort.order
     );
 
-    const paginatedMovies = paginate(sortedMovies, pageSize, currentPage);
+    const paginatedMovies = paginate(filteredMovies, pageSize, currentPage);
 
     const total = filteredMovies.length;
 

@@ -12,13 +12,13 @@ const MoviesTable = ({
   onDeleteMovie,
   total,
   onEdit,
-  
 }) => {
   return (
     <>
       <table className="table table-stripped table-hovered">
         <thead>
           <tr>
+            <th>Id</th>
             <th>Title</th>
             <th>Genre</th>
             <th>Stock</th>
