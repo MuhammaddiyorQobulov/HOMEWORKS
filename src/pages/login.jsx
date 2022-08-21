@@ -2,68 +2,67 @@ import { Component } from "react";
 import { toast } from "react-toastify";
 import Input from "../components/common/input";
 import { object, number, string } from "yup";
-
+const schema = object({
+  email: string().email().required("Email is Required"),
+  password: string().min(4).required("Password is Required"),
+});
 class Login extends Component {
   state = {
     disabled: false,
     user: {
       email: "example@gmail.com",
-      password: "12341234",
+      password: "134",
     },
     errors: {},
   };
 
-  validate = () => {
-    const { email, password } = this.state.user;
-    const errors = {};
-    if (email.trim() === "") errors.email = "Email is required!";
+  // validate = () => {
+  //   const { email, password } = this.state.user;
+  //   const errors = {};
+  //   if (email.trim() === "") errors.email = "Email is required!";
 
-    if (password.trim() === "") errors.password = "Password is required!";
+  //   if (password.trim() === "") errors.password = "Password is required!";
 
-    return Object.values(errors).length ? errors : false;
-  };
+  //   return Object.values(errors).length ? errors : false;
+  // };
 
   handleSubmit = async (e) => {
     e.preventDefault();
     this.setState({ disabled: true });
 
-    const errors = this.validate();
-
-    const schema = object({
-      email: string().email().required(),
-      password: string().min(4).required(),
+    const formData = await schema.validate(this.state.user).catch((err) => {
+      console.log("err = ", JSON.parse(JSON.stringify(err)));
+      console.log(err.errors[0]);
+      this.state.errors[err.path] = err.errors[0];
     });
 
-    const formData = await schema.isValid(this.state.user);
-    console.log(formData);
-
-    if (errors) {
-      this.setState({ errors, disabled: false });
+    if (formData) {
+      const { email, password } = this.state.user;
+      setTimeout(() => {
+        toast.success(`Login, user ${email} password ${password}`);
+        this.setState({ disabled: false, errors: {} });
+      }, 2000);
+    } else {
+      this.setState({ disabled: false });
       return toast.error("Exist errors");
     }
-
-    const { email, password } = this.state.user;
-    setTimeout(() => {
-      toast.success(`Login, user ${email} password ${password}`);
-      this.setState({ disabled: false });
-    }, 2000);
   };
 
-  validateField = (value, name) => {
-    const errors = { ...this.state.errors };
-    if (value.trim() === "") errors[name] = name.toCapital() + " is required!";
-    else delete errors[name];
+  // validateField = (value, name) => {
+  //   const errors = { ...this.state.errors };
+  //   if (value.trim() === "") errors[name] = name.toCapital() + " is required!";
+  //   else delete errors[name];
 
-    return errors;
-  };
+  //   return errors;
+  // };
 
   handleChange = (e) => {
     const { value, name } = e.target;
 
-    const errors = this.validateField(value, name);
+    // const errors = this.validateField(value, name);
 
     const { user } = this.state;
-    this.setState({ user: { ...user, [name]: value }, errors });
+    this.setState({ user: { ...user, [name]: value } });
   };
 
   render() {
