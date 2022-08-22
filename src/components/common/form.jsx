@@ -1,5 +1,6 @@
 import { Component } from "react";
 import { toast } from "react-toastify";
+import { Link } from "react-router-dom";
 import Input from "./input";
 
 class Form extends Component {
@@ -10,7 +11,7 @@ class Form extends Component {
       this.schema.validateSync(this.state.data, { abortEarly: false });
     } catch ({ inner }) {
       for (let { path, message } of inner) errors[path] = message;
-      console.log("errors = ", errors);
+      // console.log("errors = ", errors);
     }
 
     return Object.values(errors).length ? errors : false;
@@ -18,15 +19,13 @@ class Form extends Component {
 
   handleSubmit = (e) => {
     e.preventDefault();
-
     const errors = this.validate();
-
     if (errors) {
       this.setState({ errors, disabled: false });
       return toast.error("Exist errors");
     }
-
     this.doSubmit();
+    this.props.renderValues(this.state.data);
   };
 
   validateField = (value, name) => {
@@ -39,7 +38,7 @@ class Form extends Component {
       delete errors[name];
     } catch ({ inner }) {
       for (let { path, message } of inner) errors[path] = message;
-      console.log("errors = ", errors);
+      // console.log("errors = ", errors);
     }
 
     return Object.values(errors).length ? errors : false;
@@ -54,11 +53,10 @@ class Form extends Component {
     this.setState({ data: { ...data, [name]: value }, errors });
   };
 
-  renderInput = (name, label, type = "text") => {
+  renderInput = (name, type = "text") => {
     return (
       <Input
         name={name}
-        label={label}
         type={type}
         value={this.state.data[name]}
         onChange={this.handleChange}
@@ -67,8 +65,21 @@ class Form extends Component {
     );
   };
 
-  renderButton = (title) => {
-    return <button className='btn btn-primary'>{title}</button>;
+  renderButton = (title, path, type) => {
+    return (
+      <Link
+        to={path}
+        style={{
+          color: "white",
+          fontWeight: "700",
+          textDecoration: "none",
+          fontSize: "24px",
+        }}
+      >
+        <input className="btn btn-primary" value="Next" type="submit" />
+        {title}
+      </Link>
+    );
   };
 }
 

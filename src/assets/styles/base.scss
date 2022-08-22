@@ -1,0 +1,15 @@
+form {
+  fieldset {
+    border-radius: 10px;
+
+    legend {
+      font-size: 20px;
+    }
+    input{
+        width: 400px;
+        height: 30px;
+        border: none;
+        outline: none;
+    }
+  }
+}
