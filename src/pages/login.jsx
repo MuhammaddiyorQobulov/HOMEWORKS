@@ -16,16 +16,6 @@ class Login extends Component {
     errors: {},
   };
 
-  // validate = () => {
-  //   const { email, password } = this.state.user;
-  //   const errors = {};
-  //   if (email.trim() === "") errors.email = "Email is required!";
-
-  //   if (password.trim() === "") errors.password = "Password is required!";
-
-  //   return Object.values(errors).length ? errors : false;
-  // };
-
   handleSubmit = async (e) => {
     e.preventDefault();
     this.setState({ disabled: true });
@@ -48,19 +38,8 @@ class Login extends Component {
     }
   };
 
-  // validateField = (value, name) => {
-  //   const errors = { ...this.state.errors };
-  //   if (value.trim() === "") errors[name] = name.toCapital() + " is required!";
-  //   else delete errors[name];
-
-  //   return errors;
-  // };
-
   handleChange = (e) => {
     const { value, name } = e.target;
-
-    // const errors = this.validateField(value, name);
-
     const { user } = this.state;
     this.setState({ user: { ...user, [name]: value } });
   };

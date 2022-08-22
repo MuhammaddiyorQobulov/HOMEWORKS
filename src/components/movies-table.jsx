@@ -46,7 +46,6 @@ const MoviesTable = ({
                   }}
                 >
                   <button
-                    onClick={() => onEdit(movie._id)}
                     className="btn btn-info btn-sm ms-2"
                   >
                     Edit

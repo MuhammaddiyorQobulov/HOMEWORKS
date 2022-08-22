@@ -42,16 +42,18 @@ class AddMovie extends Component {
 
   handleSubmit = (e) => {
     e.preventDefault();
-    const editMovie = this.props.location.state;
-    this.setState({ disabled: true });
+    const { title, genre } = this.state.movie;
 
+    const editMovie = this.props.location.state;
     const errors = this.validate();
+    
+    
+    this.setState({ disabled: true });
     if (errors) {
       this.setState({ errors, disabled: false });
       return toast.error("Exist errors");
     }
 
-    const { title, genre } = this.state.movie;
 
     editMovie && console.log(editMovie);
     setTimeout(() => {

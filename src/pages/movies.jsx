@@ -61,11 +61,6 @@ class Movies extends Component {
     setTimeout(() => this.setState({ loading: false, movies, genres }), 1000);
   }
 
-  handleEditmovie = (movieID) => {
-    const { movies } = this.state;
-    const movie = movies.find((movie) => movie._id === movieID);
-  };
-
   render() {
     if (this.state.loading) return <Loader />;
 
@@ -106,7 +101,6 @@ class Movies extends Component {
             onDeleteMovie={this.handleDeleteMovie}
             onPageChange={this.handlePageChange}
             onLike={this.handleLike}
-            onEdit={this.handleEditmovie}
           />
         </div>
       </div>
