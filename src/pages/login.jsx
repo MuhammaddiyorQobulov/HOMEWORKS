@@ -41,6 +41,13 @@ class Login extends Component {
   handleChange = (e) => {
     const { value, name } = e.target;
     const { user } = this.state;
+
+
+    const formData = await schema.validate(this.state.user).catch((err) => {
+      console.log("err = ", JSON.parse(JSON.stringify(err)));
+      console.log(err.errors[0]);
+      this.state.errors[err.path] = err.errors[0];
+    });
     this.setState({ user: { ...user, [name]: value } });
   };
 
