@@ -1,18 +1,14 @@
-import { faker } from "@faker-js/faker";
 import { Component } from "react";
 import { toast } from "react-toastify";
 import Input from "../components/common/input";
 import Select from "../components/common/select";
-import { fakeGetGenres } from "../services";
-import { fakeGetGenre } from "../services/fake-get-genres";
 
-const genres = fakeGetGenres();
 class AddMovie extends Component {
   editMovieArr = this.props.location.state;
   state = {
     disabled: false,
     movie: {
-      genre: this.editMovieArr ? this.editMovieArr.movie.genre._id : "",
+      genreId: this.editMovieArr ? this.editMovieArr.movie.genre._id : "",
       title: this.editMovieArr ? this.editMovieArr.movie.title : "",
       dailyRentalRate: this.editMovieArr
         ? this.editMovieArr.movie.dailyRentalRate
@@ -20,9 +16,6 @@ class AddMovie extends Component {
       numberInStock: this.editMovieArr
         ? this.editMovieArr.movie.numberInStock
         : "",
-      _id: this.editMovieArr
-        ? this.editMovieArr.movie._id
-        : faker.database.mongodbObjectId(),
     },
     errors: {},
   };
@@ -32,42 +25,29 @@ class AddMovie extends Component {
     const errors = {};
 
     if (title.trim() === "") errors.title = "Title is required!";
-    if (dailyRentalRate.length === 0)
-      errors.dailyRentalRate = "dailyRentalRate is required!";
-    if (numberInStock.length === 0)
-      errors.numberInStock = "numberInStock is required!";
+    // if (dailyRentalRate.trim() === "")
+    //   errors.dailyRentalRate = "dailyRentalRate is required!";
+    // if (numberInStock.trim() === "")
+    //   errors.numberInStock = "numberInStock is required!";
 
     return Object.values(errors).length ? errors : false;
   };
 
   handleSubmit = (e) => {
+    const { onEditMovie, onPostMovie, location, push } = this.props;
     e.preventDefault();
-    const { title, genre } = this.state.movie;
-
-    const editMovie = this.props.location.state;
-    const errors = this.validate();
-    
-    
     this.setState({ disabled: true });
+
+    const errors = this.validate();
     if (errors) {
       this.setState({ errors, disabled: false });
       return toast.error("Exist errors");
     }
 
-
-    editMovie && console.log(editMovie);
     setTimeout(() => {
       const movie = { ...this.state.movie };
-      movie.genre = editMovie
-        ? editMovie.movie.genre
-        : fakeGetGenre(movie.genre);
-      this.props.onAddMovie(movie);
-      toast.success(
-        `${
-          editMovie ? "Editted" : "Added"
-        } Movie, Genre: ${genre} Name: ${title}`
-      );
-      this.props.push("/movies");
+      location.state ? onEditMovie(movie) : onPostMovie(movie);
+      push("/movies", movie);
     }, 2000);
   };
 
@@ -82,7 +62,12 @@ class AddMovie extends Component {
     const { value, name } = e.target;
     const { movie } = this.state;
     const errors = this.validateField(value, name);
-    this.setState({ movie: { ...movie, [name]: value }, errors });
+    const genre = this.props.genres.find((genre) => genre._id === value);
+    if (name === "genreId") {
+      this.setState({ movie: { ...movie, ["genreId"]: genre._id } });
+    } else {
+      this.setState({ movie: { ...movie, [name]: value }, errors });
+    }
   };
 
   render() {
@@ -92,13 +77,13 @@ class AddMovie extends Component {
         <h1>Movie Form</h1>
         <form onSubmit={this.handleSubmit}>
           <Select
-            name="genre"
+            name="genreId"
             label="Genre Name"
             placeholder="Select Genre"
-            value={movie.genre}
+            value={movie.genreId}
             onChange={this.handleChange}
-            error={errors.genre}
-            options={genres}
+            error={errors.genreId}
+            options={this.props.genres}
           />
           <Input
             name="title"
@@ -125,7 +110,7 @@ class AddMovie extends Component {
             error={errors.numberInStock}
           />
           <button className="btn btn-primary" disabled={disabled}>
-            Save {this.props.location.state && "Edits"}
+            Save
           </button>
         </form>
       </>

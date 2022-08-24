@@ -9,16 +9,15 @@ const MoviesTable = ({
   pageSize,
   onPageChange,
   currentPage,
-  onDeleteMovie,
   total,
-  onEdit,
+  onDeleteMovie,
+  onEditMovie,
 }) => {
   return (
     <>
       <table className="table table-stripped table-hovered">
         <thead>
           <tr>
-            <th>Id</th>
             <th>Title</th>
             <th>Genre</th>
             <th>Stock</th>
@@ -29,7 +28,6 @@ const MoviesTable = ({
         <tbody>
           {movies.map((movie) => (
             <tr key={movie._id}>
-              <td>{movie._id}</td>
               <td>{movie.title}</td>
               <td>{movie.genre.name}</td>
               <td>{movie.numberInStock}</td>
@@ -45,11 +43,7 @@ const MoviesTable = ({
                     state: { movie },
                   }}
                 >
-                  <button
-                    className="btn btn-info btn-sm ms-2"
-                  >
-                    Edit
-                  </button>
+                  <button className="btn btn-info btn-sm ms-2">Edit</button>
                 </Link>
                 <button
                   className="btn btn-danger btn-sm ms-2"
@@ -77,7 +71,7 @@ MoviesTable.propTypes = {
   currentPage: PropTypes.number.isRequired,
   pageSize: PropTypes.number.isRequired,
   total: PropTypes.number.isRequired,
-  onDeleteMovie: PropTypes.func.isRequired,
+  // onDeleteMovie: PropTypes.func.isRequired,
   onPageChange: PropTypes.func.isRequired,
   onLike: PropTypes.func.isRequired,
 };
