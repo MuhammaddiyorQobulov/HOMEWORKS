@@ -38,10 +38,9 @@ class Login extends Component {
     }
   };
 
-  handleChange = (e) => {
+  handleChange = async (e) => {
     const { value, name } = e.target;
     const { user } = this.state;
-
 
     const formData = await schema.validate(this.state.user).catch((err) => {
       console.log("err = ", JSON.parse(JSON.stringify(err)));
