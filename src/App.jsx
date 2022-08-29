@@ -7,12 +7,12 @@ function App() {
   return (
     <div className="App">
       <Switch>
-        <Route to="/" exact component={(props) => <Todos {...props} />} />
         <Route
-          to="/add-todo"
+          path="/add-todo"
           exact
           component={(props) => <AddTodo {...props} />}
         />
+        <Route path="/" exact component={(props) => <Todos {...props} />} />
       </Switch>
     </div>
   );
