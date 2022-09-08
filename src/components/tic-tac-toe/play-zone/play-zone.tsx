@@ -17,6 +17,7 @@ const Playzone: React.FC<PlayzoneProps> = ({
 
   return (
     <div className="play-zone">
+      <div className="playerStep">Next Player: {playerStep.toUpperCase()}</div>
       <div className="ceils">
         {steps.map((step, idx) => (
           <div
