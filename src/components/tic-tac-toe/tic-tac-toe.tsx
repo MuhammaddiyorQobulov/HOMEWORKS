@@ -20,6 +20,9 @@ const TicTacToe: React.FC<TicTacToeProps> = () => {
   })
 
   const handleSteps = (idx: number, value: string) => {
+    console.log(state.step)
+    console.log(storageStep)
+
     let newSteps = [...state.steps[state.step]]
     newSteps[idx] = value
     localStorage.setItem(
@@ -36,7 +39,7 @@ const TicTacToe: React.FC<TicTacToeProps> = () => {
   }
 
   const handleChangeSteps = (step: number) => {
-    setState({ ...state, step })
+    setState({ ...state, step, playerStep: step % 2 === 0 ? 'x' : 'o' })
   }
 
   return (
