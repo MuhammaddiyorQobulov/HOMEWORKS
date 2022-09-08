@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import Playzone from './play-zone/play-zone'
 import Steps from './steps/steps'
 import './tic-tac-toe.scss'
@@ -15,27 +15,23 @@ const TicTacToe: React.FC<TicTacToeProps> = () => {
 
   const [state, setState] = useState({
     playerStep: storageStep % 2 == 0 ? 'x' : 'o',
-    steps: storageSteps[storageStep],
+    steps: storageSteps,
     step: storageStep,
   })
 
-  console.log('------------')
-  console.log(storageSteps[storageStep])
-  console.log(state.steps)
-
   const handleSteps = (idx: number, value: string) => {
-    let newSteps = [...state.steps]
+    let newSteps = [...state.steps[state.step]]
     newSteps[idx] = value
     localStorage.setItem(
       'steps',
-      JSON.stringify([...storageSteps, newSteps].splice(0, state.step + 2)),
+      JSON.stringify([...state.steps, newSteps].splice(0, state.step + 2)),
     )
     localStorage.setItem('step', JSON.stringify(++state.step))
 
     setState({
       ...state,
-      steps: newSteps,
-      playerStep: value === 'x' ? 'o' : 'x',
+      steps: [...state.steps.splice(0, state.step), newSteps],
+      playerStep: storageStep % 2 === 0 ? 'o' : 'x',
     })
   }
 
@@ -47,10 +43,14 @@ const TicTacToe: React.FC<TicTacToeProps> = () => {
     <div className="container">
       <Playzone
         onChangeSteps={handleSteps}
-        steps={storageSteps[storageStep]}
+        steps={state.steps[state.step]}
         playerStep={state.playerStep}
       />
-      <Steps steps={storageSteps} onChangeStep={handleChangeSteps} />
+      <Steps
+        steps={state.steps}
+        onChangeStep={handleChangeSteps}
+        step={state.step}
+      />
     </div>
   )
 }

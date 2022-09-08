@@ -3,16 +3,17 @@ import './steps.scss'
 interface StepsProps {
   steps: any
   onChangeStep: (step: number) => void
+  step: number
 }
 
-const Steps: React.FC<StepsProps> = ({ steps, onChangeStep }) => {
+const Steps: React.FC<StepsProps> = ({ steps, onChangeStep, step }) => {
   let storageStep = JSON.parse(localStorage.getItem('step')!) || 0
 
   return (
     <div className="steps">
       {steps.map((item: any, idx: any) => (
         <button
-          disabled={storageStep === idx}
+          disabled={step === idx}
           key={idx}
           onClick={() => {
             localStorage.setItem('step', JSON.stringify(idx))
