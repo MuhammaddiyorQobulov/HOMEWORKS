@@ -1,0 +1,24 @@
+.movie {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  img {
+    width: 95%;
+  }
+
+  p {
+    font-size: 16px;
+  }
+
+  button {
+    border: 1px solid #fff;
+    background-color: orange;
+    font-size: 14px;
+    padding: 5px 10px;
+    border-radius: 8px;
+    transition: 0.3s cubic-bezier(1, 0, 0, 1);
+    &:hover {
+      background-color: greenyellow;
+    }
+  }
+}
