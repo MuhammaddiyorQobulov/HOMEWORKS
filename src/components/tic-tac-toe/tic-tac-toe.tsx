@@ -15,7 +15,7 @@ const TicTacToe: React.FC<TicTacToeProps> = () => {
 
   const [state, setState] = useState({
     playerStep: storageStep % 2 == 0 ? 'x' : 'o',
-    steps: storageSteps[storageStep],
+    steps: storageSteps,
     step: storageStep,
   })
 
@@ -44,7 +44,7 @@ const TicTacToe: React.FC<TicTacToeProps> = () => {
     <div className="container">
       <Playzone
         onChangeSteps={handleSteps}
-        steps={state.steps}
+        steps={state.steps[storageStep]}
         playerStep={state.playerStep}
       />
       <Steps steps={storageSteps} onChangeStep={handleChangeSteps} />

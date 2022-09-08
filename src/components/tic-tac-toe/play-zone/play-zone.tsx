@@ -46,6 +46,7 @@ const Playzone: React.FC<PlayzoneProps> = ({
           localStorage.setItem('steps', JSON.stringify([defaultCeils]))
           localStorage.setItem('step', JSON.stringify(0))
         }}
+        className="restart-btn"
       >
         Restart
       </button>

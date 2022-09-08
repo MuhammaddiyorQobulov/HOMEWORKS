@@ -5,8 +5,6 @@ interface StepsProps {
   onChangeStep: (step: number) => void
 }
 
-const step = JSON.parse(localStorage.getItem('step')!) || 0
-
 const Steps: React.FC<StepsProps> = ({ steps, onChangeStep }) => {
   let storageStep = JSON.parse(localStorage.getItem('step')!) || 0
 
