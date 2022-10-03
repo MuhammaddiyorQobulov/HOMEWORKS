@@ -1,7 +1,10 @@
+@import url("https://fonts.googleapis.com/css2?family=Anek+Latin:wght@100;200;300&family=Lobster&family=Poppins:wght@200;300;400&family=Quicksand:wght@400;500;600;700&family=Rajdhani:wght@300&display=swap");
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  font-family: "Rajdhani", sans-serif;
+  user-select: none;
 }
 
 .wrapper {
@@ -20,7 +23,7 @@
     .container {
       width: 52%;
       height: 60%;
-      background: linear-gradient(to right, #f7f7f7 50%, #fff 50%);
+      display: flex;
     }
   }
 }
