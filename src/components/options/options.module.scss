@@ -8,9 +8,12 @@
   align-items: center;
   .option {
     cursor: pointer;
+    border: none;
     display: flex;
     justify-content: center;
     align-items: center;
+    padding: 10px 15px;
+    background-color: #ddd;
     gap: 10px;
     i {
       color: red;

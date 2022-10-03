@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { ChangeEventHandler, useState } from 'react'
 import Stone from './stone/stone'
 import Btn from './btn/btn'
 import cls from './options.module.scss'
@@ -7,6 +7,9 @@ interface OptionsProps {
   role: boolean
   onHold: (role: boolean) => void
   onRestart: () => void
+  total: any
+  limitScore: number
+  limit: (a: string) => void
 }
 
 const Options: React.FC<OptionsProps> = ({
@@ -14,6 +17,9 @@ const Options: React.FC<OptionsProps> = ({
   role,
   onHold,
   onRestart,
+  total,
+  limit,
+  limitScore,
 }) => {
   const [state, setState] = useState({ num1: 1 })
 
@@ -26,6 +32,8 @@ const Options: React.FC<OptionsProps> = ({
     })
   }
 
+  const input = React.useRef(null)
+
   return (
     <div className={cls.options}>
       <Btn
@@ -35,15 +43,20 @@ const Options: React.FC<OptionsProps> = ({
       />
       <Stone number={state.num1} />
       <Btn
+        disabled={
+          total[0] >= limitScore || total[1] >= limitScore ? true : false
+        }
         icon={<i className="fa-solid fa-spinner"></i>}
         title="ROLL DICE"
         onClick={() => randomStone()}
       />
       <Btn
+        disabled={total[0] >= limitScore || total[1] >= limitScore}
         onClick={() => onHold(role)}
         icon={<i className="fa-solid fa-download"></i>}
         title="HOLD"
       />
+      <input type="number" ref={input} onChange={(e: any) => limit(e)} />
     </div>
   )
 }

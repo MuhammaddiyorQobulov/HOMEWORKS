@@ -4,13 +4,21 @@ interface PlayerProps {
   name: string
   score: number
   currentScore: number
+  limitScore: number
 }
 
-const Player: React.FC<PlayerProps> = ({ name, score, currentScore }) => {
+const Player: React.FC<PlayerProps> = ({
+  name,
+  score,
+  currentScore,
+  limitScore = 30,
+}) => {
   return (
     <div className={cls.player}>
       <div>
-        <div className={cls.title}>{name}</div>
+        <div className={cls.title}>
+          {score >= limitScore ? 'Winner !!!' : name}
+        </div>
         <span className={cls.score}>{score}</span>
       </div>
       <div className={cls.ball}>

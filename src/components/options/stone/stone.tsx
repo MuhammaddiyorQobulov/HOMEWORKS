@@ -14,10 +14,10 @@ const Stone: React.FC<StoneProps> = ({ number }) => {
   const stones = [img1, img2, img3, img4, img5, img6]
 
   return (
-    <div className="stone">
-      <img src={stones[number]} alt={stones[number]} />
-      <h1>{number}</h1>
-    </div>
+    <div
+      className="stone"
+      style={{ backgroundImage: `url(${stones[number - 1]})` }}
+    ></div>
   )
 }
 
