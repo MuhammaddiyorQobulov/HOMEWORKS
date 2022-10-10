@@ -1,33 +1,40 @@
-import React from 'react'
-import TicTacToe from './components/tic-tac-toe/tic-tac-toe'
-import { Switch, Route, Link } from 'react-router-dom'
-import Movies from './components/movies/movies'
+import React, { useState } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
+import { setValue, restart } from './redux/tic-tac-toe-reducer'
+import './base.scss'
+
 interface AppProps {}
 
-const App: React.FC<AppProps> = () => (
-  <div>
-    <div
-      className="navbar d-flex bg-dark text-light justify-content-center"
-      style={{ gap: '30px' }}
-    >
-      <Link to="/tic-tac-toe">Tic Tac Toe</Link>
-      <Link to="/movies">Movies</Link>
-      <Link to="/favourites">Favourites</Link>
-    </div>
-    <Switch>
-      <Route
-        exact
-        path="/movies"
-        component={(props: any) => <Movies {...props} />}
-      />
+const App: React.FC<AppProps> = () => {
+  let dispatch = useDispatch()
 
-      <Route
-        exact
-        path="/tic-tac-toe"
-        component={(props: any) => <TicTacToe {...props} />}
-      />
-    </Switch>
-  </div>
-)
+  const state = useSelector((state: any) => state.tictactoe)
+
+  return (
+    <div className="wrapper">
+      <div className="container">
+        {state.ceils.map((ceil: any, idx: any) => {
+          return (
+            <div
+              style={{ pointerEvents: ceil !== '' ? 'none' : 'auto' }}
+              onClick={() => dispatch(setValue(idx))}
+              key={idx}
+              className="ceil"
+            >
+              {ceil}
+            </div>
+          )
+        })}
+      </div>
+      <button
+        onClick={() => {
+          dispatch(restart())
+        }}
+      >
+        Restart
+      </button>
+    </div>
+  )
+}
 
 export default App
